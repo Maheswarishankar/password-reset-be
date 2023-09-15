@@ -127,7 +127,7 @@ router.post("/loginhelp/resetpassword", async (req, res) => {
         await client
             .db('password')
             .collection('register')
-            .updateOne({ email: user.email }, { $set: { password: updatedPassword, resetPasswordToken: "", expiresIn: null } })
+            .findOneAndUpdate({ email: user.email }, { $set: { password: updatedPassword, resetPasswordToken: "", expiresIn: null } })
 
         res.json({ message: "Password Changed Successfully" })
         console.log("Password changed successfully");
